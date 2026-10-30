@@ -52,6 +52,7 @@ def executar(comando, params=None, conn=None):
 
 
 def inserir_em_lote(conn, tabela, colunas, linhas, on_conflict="", page_size=5000):
+    
     """
    Insere em lote no PostgreSQL.
 
@@ -59,3 +60,16 @@ def inserir_em_lote(conn, tabela, colunas, linhas, on_conflict="", page_size=500
    `colunas` é uma lista de nomes de colunas.
    `linhas` é uma lista de tuplas com os valores a serem inseridos.
    """
+    if not linhas:
+        return 0
+    comando = sql.SQL("INSERT INTO {} ({}) VALUES %s {}").format(
+        sql.Identifier(tabela),
+        sql.SQL(", ").join(sql.Identifier(c) for c in colunas),
+        sql.SQL(on_conflict),
+    )
+    with conn.cursor() as cur:
+        execute_values(cur, comando.as_string(cur), linhas,
+                       page_size=page_size)
+        return len(linhas)
+
+       
