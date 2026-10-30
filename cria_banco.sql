@@ -1,0 +1,171 @@
+CREATE DATABASE srag_2020;
+\c srag_2020;
+
+DROP TABLE IF EXISTS raw_srag_2020 CASCADE;
+DROP TABLE IF EXISTS silver_srag_2020 CASCADE;
+
+-- ---------------------------------------------------------------------
+-- RAW: copia fiel dos CSVs (tudo VARCHAR, sem constraints)
+-- ---------------------------------------------------------------------
+CREATE TABLE raw_srag_2020 (
+    -- Identificação e Datas Principais
+    DT_NOTIFIC DATE,
+    SEM_NOT INT,
+    DT_SIN_PRI DATE,
+    SEM_PRI INT,
+    SG_UF_NOT VARCHAR(2),
+    ID_REGIONA VARCHAR(100),
+    CO_REGIONA VARCHAR(10),
+    ID_MUNICIP VARCHAR(100),
+    CO_MUN_NOT VARCHAR(10),
+    ID_UNIDADE VARCHAR(100),
+    CO_UNI_NOT VARCHAR(10),
+
+    -- Dados Demográficos do Paciente
+    CS_SEXO VARCHAR(1),
+    NU_IDADE_N INT,
+    TP_IDADE INT,
+    COD_IDADE VARCHAR(10),
+    ID_PAIS VARCHAR(100),
+    CO_PAIS VARCHAR(10),
+    SG_UF VARCHAR(2),
+    ID_RG_RESI VARCHAR(100),
+    CO_RG_RESI VARCHAR(10),
+    ID_MN_RESI VARCHAR(100),
+    CO_MUN_RES VARCHAR(10),
+    CS_ZONA INT,
+    CS_GESTANT INT,
+    CS_RACA INT,
+    CS_ETINIA VARCHAR(50),
+    CS_ESCOL_N INT,
+
+    -- Sinais, Sintomas e Fatores de Risco
+    SURTO_SG INT,
+    NOSOCOMIAL INT,
+    AVE_SUINO INT,
+    FEBRE INT,
+    TOSSE INT,
+    GARGANTA INT,
+    DISPNEIA INT,
+    DESC_RESP INT,
+    SATURACAO INT,
+    DIARREIA INT,
+    VOMITO INT,
+    OUTRO_SIN INT,
+    OUTRO_DES VARCHAR(255),
+    PUERPERA INT,
+
+    -- Comorbidades
+    CARDIOPATI INT,
+    HEMATOLOGI INT,
+    SIND_DOWN INT,
+    HEPATICA INT,
+    ASMA INT,
+    DIABETES INT,
+    NEUROLOGIC INT,
+    PNEUMOPATI INT,
+    IMUNODEPRE INT,
+    RENAL INT,
+    OBESIDADE INT,
+    OBES_IMC NUMERIC(5,2),
+    OUT_MORBI INT,
+    MORB_DESC VARCHAR(255),
+
+    -- Histórico de Vacinação
+    VACINA INT,
+    DT_UT_DOSE DATE,
+    MAE_VAC INT,
+    DT_VAC_MAE DATE,
+    M_AMAMENTA INT,
+    DT_DOSEUNI DATE,
+    DT_1_DOSE DATE,
+    DT_2_DOSE DATE,
+
+    -- Tratamento Antiviral
+    ANTIVIRAL INT,
+    TP_ANTIVIR INT,
+    OUT_ANTIV VARCHAR(255),
+    DT_ANTIVIR DATE,
+
+    -- Internação e UTI
+    HOSPITAL INT,
+    DT_INTERNA DATE,
+    SG_UF_INTE VARCHAR(2),
+    ID_RG_INTE VARCHAR(100),
+    CO_RG_INTE VARCHAR(10),
+    ID_MN_INTE VARCHAR(100),
+    CO_MU_INTE VARCHAR(10),
+    UTI INT,
+    DT_ENTUTI DATE,
+    DT_SAIDUTI DATE,
+    SUPORT_VEN INT,
+
+    -- Exames de Imagem
+    RAIOX_RES INT,
+    RAIOX_OUT VARCHAR(255),
+    DT_RAIOX DATE,
+
+    -- Dados Laboratoriais (Geral e Imunofluorescência)
+    AMOSTRA INT,
+    DT_COLETA DATE,
+    TP_AMOSTRA INT,
+    OUT_AMOST VARCHAR(255),
+    IF_RESUL INT,
+    DT_IF DATE,
+    POS_IF_FLU INT,
+    TP_FLU_IF INT,
+    POS_IF_OUT INT,
+    IF_VSR INT,
+    IF_PARA1 INT,
+    IF_PARA2 INT,
+    IF_PARA3 INT,
+    IF_ADENO INT,
+    IF_OUTRO INT,
+    DS_IF_OUT VARCHAR(255),
+
+    -- Dados de PCR
+    PCR_RESUL INT,
+    DT_PCR DATE,
+    POS_PCRFLU INT,
+    TP_FLU_PCR INT,
+    PCR_FLUASU INT,
+    FLUASU_OUT VARCHAR(255),
+    PCR_FLUBLI INT,
+    FLUBLI_OUT VARCHAR(255),
+    POS_PCROUT INT,
+    PCR_VSR INT,
+    PCR_PARA1 INT,
+    PCR_PARA2 INT,
+    PCR_PARA3 INT,
+    PCR_PARA4 INT,
+    PCR_ADENO INT,
+    PCR_METAP INT,
+    PCR_BOCA INT,
+    PCR_RINO INT,
+    PCR_OUTRO INT,
+    DS_PCR_OUT VARCHAR(255),
+    PCR_SARS2 INT,
+
+    -- Conclusão, Evolução e Ocupação
+    CLASSI_FIN INT,
+    CLASSI_OUT VARCHAR(255),
+    CRITERIO INT,
+    EVOLUCAO INT,
+    DT_EVOLUCA DATE,
+    DT_ENCERRA DATE,
+    DT_DIGITA DATE,
+    PAC_COCBO VARCHAR(15),
+    PAC_DSCBO VARCHAR(255),
+
+    -- Dados de Viagem
+    HISTO_VGM INT,
+    PAIS_VGM VARCHAR(100),
+    CO_PS_VGM VARCHAR(10),
+    LO_PS_VGM VARCHAR(255),
+    DT_VGM DATE,
+    DT_RT_VGM DATE
+);
+
+
+
+
