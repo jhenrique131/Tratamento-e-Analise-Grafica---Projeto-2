@@ -52,7 +52,6 @@ def executar(comando, params=None, conn=None):
 
 
 def inserir_em_lote(conn, tabela, colunas, linhas, on_conflict="", page_size=5000):
-    
     """
    Insere em lote no PostgreSQL.
 
@@ -72,4 +71,19 @@ def inserir_em_lote(conn, tabela, colunas, linhas, on_conflict="", page_size=500
                        page_size=page_size)
         return len(linhas)
 
-       
+
+def ler_em_bloco(conn, consulta, tamanho=50_000):
+    """
+   Le o resultado de uma consulta em blocos (cursor no servidor)
+
+    `comando` é o comando SQL a ser executado.
+    `tamanho` é o tamanho do bloco a ser lido.
+    """
+    with conn.cursor(name=f"cur_{uuid.uuid4()}") as cur:
+        cur.itersize = tamanho
+        cur.execute(consulta)
+        while True:
+            bloco = cur.fetchmany(tamanho)
+            if not bloco:
+                break
+            yield bloco
