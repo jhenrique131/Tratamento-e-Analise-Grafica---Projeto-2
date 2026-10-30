@@ -1,6 +1,5 @@
 # Extração dos dados para o banco PostgreSQL
 
-
 """Fase 1 - Extracao e carga da camada Raw.
 
 1. Executa o cria_banco.sql (cria o banco e as tabelas raw/silver).
@@ -154,7 +153,7 @@ def carregar_raw(conn, csv_path):
     if faltando:
         raise ValueError(f"Colunas da tabela ausentes no CSV: {faltando}")
 
-    executar("SET datestyle TO 'ISO, MDY'", conn=conn)  
+    executar("SET datestyle TO 'ISO, MDY'", conn=conn)
     executar(sql.SQL("TRUNCATE TABLE {}").format(sql.Identifier(TABELA_RAW)),
              conn=conn)
 
@@ -170,11 +169,12 @@ def carregar_raw(conn, csv_path):
         if "obes_imc" in bloco:  # decimal com vírgula
             bloco["obes_imc"] = bloco["obes_imc"].str.replace(",", ".",
                                                               regex=False)
-        
+
         # --- ALTERADO AQUI: Limpeza robusta contra strings de texto nulo ---
         bloco = bloco.astype(object)
-        bloco = bloco.where((bloco != "") & (bloco != "None") & (bloco != "nan"), None)
-        
+        bloco = bloco.where((bloco != "") & (
+            bloco != "None") & (bloco != "nan"), None)
+
         linhas = list(bloco.itertuples(index=False, name=None))
         total += inserir_em_lote(conn, TABELA_RAW, colunas, linhas)
         log.info("%s: %d linhas...", TABELA_RAW, total)
