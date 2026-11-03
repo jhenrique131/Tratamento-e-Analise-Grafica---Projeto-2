@@ -1,0 +1,35 @@
+import numpy as np
+import pandas as pd
+srag_sp = pd.read_csv('E:/0 - Portifolio/python/Tratamento_AnaliseGrafica_Projeto2/python_para_dados/SRAG_2020.csv',
+                      sep=';', encoding='utf-8')
+# print(srag_sp.head(5))
+# print(f"\nsrag_sp.info(): {srag_sp.info()}")
+# print(f"\nsrag_sp.describe(): {srag_sp.describe()}")
+# print(f"\nsrag_sp.isnull().sum(): {srag_sp.isnull().sum()}")
+# print(f"\nsrag_sp.shape: {srag_sp.shape}")
+
+# Excluindo colunas que não serão utilizadas na análise
+# Criaando lista com as colunas que serão excluídas, a partir da coluna 50 até a 132
+
+#lista = list(srag_sp.columns[50:132])
+#print(f"\nLista de colunas a serem excluídas: {lista}")
+
+lista = list(range(50, 133))
+#print(f"\nLista de colunas a serem excluídas: {lista}")
+
+# Excluindo as colunas da lista
+srag_mod = srag_sp.drop(srag_sp.columns[lista], axis=1)
+print(f"\nsrag_mod.head(): {srag_mod.head(5)}")
+
+print(f"\nsrag_mod.shape: {srag_mod.shape}")
+
+#Excluindo colunas que não servem para a análise.
+srag_mod.drop(columns=['COD_IDADE', 
+                       'ID_PAIS', 
+                       'CO_PAIS', 
+                       'SG_UF', 
+                       'ID_RG_RESI', 
+                       'CO_RG_RESI',
+                       'CO_MUN_RES'], inplace=True)
+print(f"\nsrag_mod.shape: {srag_mod}")
+print(f"\nsrag_mod.shape: {srag_mod.shape}")
