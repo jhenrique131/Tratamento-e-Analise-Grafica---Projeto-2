@@ -8,28 +8,45 @@ srag_sp = pd.read_csv('E:/0 - Portifolio/python/Tratamento_AnaliseGrafica_Projet
 # print(f"\nsrag_sp.isnull().sum(): {srag_sp.isnull().sum()}")
 # print(f"\nsrag_sp.shape: {srag_sp.shape}")
 
-# Excluindo colunas que não serão utilizadas na análise
+# 1 - Excluindo colunas que não serão utilizadas na análise
 # Criaando lista com as colunas que serão excluídas, a partir da coluna 50 até a 132
 
-#lista = list(srag_sp.columns[50:132])
-#print(f"\nLista de colunas a serem excluídas: {lista}")
+# lista = list(srag_sp.columns[50:132])
+# print(f"\nLista de colunas a serem excluídas: {lista}")
 
 lista = list(range(50, 133))
-#print(f"\nLista de colunas a serem excluídas: {lista}")
+# print(f"\nLista de colunas a serem excluídas: {lista}")
 
 # Excluindo as colunas da lista
 srag_mod = srag_sp.drop(srag_sp.columns[lista], axis=1)
-print(f"\nsrag_mod.head(): {srag_mod.head(5)}")
+# print(f"\nsrag_mod.head(): {srag_mod.head(5)}")
 
-print(f"\nsrag_mod.shape: {srag_mod.shape}")
+# print(f"\nsrag_mod.shape: {srag_mod.shape}")
 
-#Excluindo colunas que não servem para a análise.
-srag_mod.drop(columns=['COD_IDADE', 
-                       'ID_PAIS', 
-                       'CO_PAIS', 
-                       'SG_UF', 
-                       'ID_RG_RESI', 
+# Excluindo colunas que não servem para a análise.
+srag_mod.drop(columns=['COD_IDADE',
+                       'ID_PAIS',
+                       'CO_PAIS',
+                       'SG_UF',
+                       'ID_RG_RESI',
                        'CO_RG_RESI',
                        'CO_MUN_RES'], inplace=True)
-print(f"\nsrag_mod.shape: {srag_mod}")
-print(f"\nsrag_mod.shape: {srag_mod.shape}")
+# print(f"\nsrag_mod.shape: {srag_mod}")
+# print(f"\nsrag_mod.shape: {srag_mod.shape}")
+
+# 2 - enomeando colunas para facilitar a análise
+srag_mod = srag_mod.rename(columns={'DT_NOTIFIC': 'data',
+                                    'CS_SEXO': 'sexo',
+                                    'NU_IDADE_N': 'idade',
+                                    'CS_RACA': 'raca'})
+# print(f"\nsrag_mod.head(): {srag_mod.head(5)}")
+
+# 3 - Analisando os tipos de variáveis do DataFrame
+# print(f"\nsrag_mod.dtypes: {srag_mod.dtypes}")
+
+# 4 - Convertendo o tipo, de object para data - cast
+srag_mod['data'] = srag_mod['data'].astype('datetime64[ns]')
+# print(f"\nsrag_mod.dtypes: {srag_mod.dtypes}")
+
+# Analisando valores nulos
+print(f"\nsrag_mod.isnull().sum(): {srag_mod.isnull().sum()}")
