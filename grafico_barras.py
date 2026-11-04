@@ -12,8 +12,15 @@ graf_barras = td.srag_mod['sexo'].value_counts()
 # No caso do código fornecido, o gráfico de barras está sendo criado para
 # mostrar a distribuição dos casos de SRAG (Síndrome Respiratória Aguda Grave) por sexo.
 
-plt.bar(graf_barras.index, graf_barras, color=['red'])
+""" plt.bar(graf_barras.index, graf_barras, color=['red'])
 plt.title('Distribuição de Casos de SRAG por Sexo')
 plt.xlabel('Sexo')
 plt.ylabel('Quantidade de Casos')
+plt.show() """
+
+#Grafico de barras horizontal
+plt.barh(graf_barras.index, graf_barras, color=['red'])
+plt.title('Distribuição de Casos de SRAG por Sexo')
+plt.xlabel('Quantidade de Casos')
+plt.ylabel('Sexo')
 plt.show()
