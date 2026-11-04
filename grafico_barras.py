@@ -1,3 +1,5 @@
+
+import seaborn as sns
 import matplotlib.pyplot as plt
 import tratamento_dados as td
 
@@ -18,9 +20,26 @@ plt.xlabel('Sexo')
 plt.ylabel('Quantidade de Casos')
 plt.show() """
 
-#Grafico de barras horizontal
-plt.barh(graf_barras.index, graf_barras, color=['red'])
+# Grafico de barras horizontal
+""" plt.barh(graf_barras.index, graf_barras, color=['red'])
 plt.title('Distribuição de Casos de SRAG por Sexo')
 plt.xlabel('Quantidade de Casos')
 plt.ylabel('Sexo')
+plt.show() """
+
+# SEABORN
+""" sns.countplot(x='sexo', data=td.srag_mod)  # Gráfico na vertical
+plt.title('Distribuição de Casos de SRAG por Sexo - Seaborn vertical')
+plt.show() """
+
+""" sns.countplot(y='sexo', data=td.srag_mod)  # Gráfico na horizontal
+plt.title('Distribuição de Casos de SRAG por Sexo - Seaborn horizontal')
+plt.show() """
+
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.countplot(x='raca', data=td.srag_mod, ax=ax)
+ax.set_title('Distribuição de Casos de SRAG por Raça',
+             fontdict={'fontsize': 16, 'fontweight': 'bold'})
+ax.set_xlabel('Raça', fontdict={'fontsize': 14})
+ax.set_ylabel('Quantidade de Casos', fontdict={'fontsize': 14})
 plt.show()
