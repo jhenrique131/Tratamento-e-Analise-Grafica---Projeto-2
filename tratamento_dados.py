@@ -49,55 +49,41 @@ srag_mod['data'] = srag_mod['data'].astype('datetime64[ns]')
 # print(f"\nsrag_mod.dtypes: {srag_mod.dtypes}")
 
 # Analisando valores nulos
-#print(f"\nsrag_mod.isnull().sum(): {srag_mod.isnull().sum()}")
+# print(f"\nsrag_mod.isnull().sum(): {srag_mod.isnull().sum()}")
 
-#Contagem das classificações de raça
-#Quantidade de registros por raça, ordenados pelo índice (código da raça)
-#print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
+# Contagem das classificações de raça
+# Quantidade de registros por raça, ordenados pelo índice (código da raça)
+# print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
 
-#Preenchendo valores nulos da coluna 'raca' com o valor 9 (Ignorado)
+# Preenchendo valores nulos da coluna 'raca' com o valor 9 (Ignorado)
 srag_mod['raca'].fillna(9, inplace=True)
-#print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
+# print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
 
-#Contagem das classificações de CS_ZONA
-#Quantidade de registros por zona, ordenados pelo índice (código da zona)
-#print(f"\nsrag_mod['CS_ZONA'].value_counts().sort_index():{srag_mod['CS_ZONA'].
-    #  value_counts().sort_index()}")
+# Contagem das classificações de CS_ZONA
+# Quantidade de registros por zona, ordenados pelo índice (código da zona)
+# print(f"\nsrag_mod['CS_ZONA'].value_counts().sort_index():{srag_mod['CS_ZONA'].
+#  value_counts().sort_index()}")
 
-#Preenchendo valores nulos da coluna 'CS_ZONA' com o valor 9 (Ignorado)
+# Preenchendo valores nulos da coluna 'CS_ZONA' com o valor 9 (Ignorado)
 srag_mod['CS_ZONA'].fillna(9, inplace=True)
-#print(f"\nsrag_mod['CS_ZONA'].value_counts().sort_index(): {srag_mod['CS_ZONA'].
- #     value_counts().sort_index()}")
+# print(f"\nsrag_mod['CS_ZONA'].value_counts().sort_index(): {srag_mod['CS_ZONA'].
+#     value_counts().sort_index()}")
 
 
-#Substituindo as classificações numéricas por palavras, para facilitar a análise
-srag_mod['raca'] = srag_mod['raca'].replace({1: 'Branca', 
-                                             2: 'Preta', 
-                                             3: 'Amarela', 
-                                             4: 'Parda', 
-                                             5: 'Indígena', 
+# Substituindo as classificações numéricas por palavras, para facilitar a análise
+srag_mod['raca'] = srag_mod['raca'].replace({1: 'Branca',
+                                             2: 'Preta',
+                                             3: 'Amarela',
+                                             4: 'Parda',
+                                             5: 'Indígena',
                                              9: 'Ignorado'})
-#print(f"\nsrag_mod['raca'].value_counts(): {srag_mod['raca'].
-     # value_counts().sort_index()}")
+# print(f"\nsrag_mod['raca'].value_counts(): {srag_mod['raca'].
+# value_counts().sort_index()}")
 
-#A mesma substituição será feita para a coluna 'CS_ZONA'
+# A mesma substituição será feita para a coluna 'CS_ZONA'
 srag_mod['CS_ZONA'] = srag_mod['CS_ZONA'].replace({1: 'Urbana',
-                                                2: 'Rural', 
-                                                3: 'Periurbana', 
-                                                9: 'Ignorado'})
-#print(f"\nsrag_mod['CS_ZONA'].value_counts(): {srag_mod['CS_ZONA'].
-      value_counts().sort_index()}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                                   2: 'Rural',
+                                                   3: 'Periurbana',
+                                                   9: 'Ignorado'})
+# print(f"\nsrag_mod['CS_ZONA'].value_counts(): {srag_mod['CS_ZONA'].
+#   value_counts().sort_index()}")
