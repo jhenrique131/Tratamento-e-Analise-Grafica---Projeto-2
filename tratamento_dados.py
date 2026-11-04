@@ -59,3 +59,27 @@ print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_
 srag_mod['raca'].fillna(9, inplace=True)
 print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
 
+#Contagem das classificações de CS_ZONA
+#Quantidade de registros por zona, ordenados pelo índice (código da zona)
+print(f"\nsrag_mod['CS_ZONA'].value_counts().sort_index():{srag_mod['CS_ZONA'].
+      value_counts().sort_index()}")
+
+#Preenchendo valores nulos da coluna 'CS_ZONA' com o valor 9 (Ignorado)
+srag_mod['CS_ZONA'].fillna(9, inplace=True)
+print(f"\nsrag_mod['CS_ZONA'].value_counts().sort_index(): {srag_mod['CS_ZONA'].
+      value_counts().sort_index()}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
