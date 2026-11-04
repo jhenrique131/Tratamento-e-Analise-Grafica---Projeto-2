@@ -56,7 +56,7 @@ srag_mod['data'] = srag_mod['data'].astype('datetime64[ns]')
 # print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
 
 # Preenchendo valores nulos da coluna 'raca' com o valor 9 (Ignorado)
-srag_mod['raca'].fillna(9, inplace=True)
+srag_mod['raca'] = srag_mod['raca'].fillna(9)
 # print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
 
 # Contagem das classificações de CS_ZONA
@@ -65,7 +65,7 @@ srag_mod['raca'].fillna(9, inplace=True)
 #  value_counts().sort_index()}")
 
 # Preenchendo valores nulos da coluna 'CS_ZONA' com o valor 9 (Ignorado)
-srag_mod['CS_ZONA'].fillna(9, inplace=True)
+srag_mod['CS_ZONA'] = srag_mod['CS_ZONA'].fillna(9)
 # print(f"\nsrag_mod['CS_ZONA'].value_counts().sort_index(): {srag_mod['CS_ZONA'].
 #     value_counts().sort_index()}")
 
