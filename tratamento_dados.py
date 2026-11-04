@@ -34,7 +34,7 @@ srag_mod.drop(columns=['COD_IDADE',
 # print(f"\nsrag_mod.shape: {srag_mod}")
 # print(f"\nsrag_mod.shape: {srag_mod.shape}")
 
-# 2 - enomeando colunas para facilitar a análise
+# 2 - Renomeando colunas para facilitar a análise
 srag_mod = srag_mod.rename(columns={'DT_NOTIFIC': 'data',
                                     'CS_SEXO': 'sexo',
                                     'NU_IDADE_N': 'idade',
@@ -49,4 +49,13 @@ srag_mod['data'] = srag_mod['data'].astype('datetime64[ns]')
 # print(f"\nsrag_mod.dtypes: {srag_mod.dtypes}")
 
 # Analisando valores nulos
-print(f"\nsrag_mod.isnull().sum(): {srag_mod.isnull().sum()}")
+#print(f"\nsrag_mod.isnull().sum(): {srag_mod.isnull().sum()}")
+
+#Contagem das classificações de raça
+#Quantidade de registros por raça, ordenados pelo índice (código da raça)
+print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
+
+#Preenchendo valores nulos da coluna 'raca' com o valor 9 (Ignorado)
+srag_mod['raca'].fillna(9, inplace=True)
+print(f"\nsrag_mod['raca'].value_counts().sort_index(): {srag_mod['raca'].value_counts().sort_index()}")
+
