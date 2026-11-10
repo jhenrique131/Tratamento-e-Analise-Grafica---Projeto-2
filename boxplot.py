@@ -27,5 +27,13 @@ td.srag_mod.loc[td.srag_mod['idade'] == 2, 'idade'] = 0
 # box.show()
 
 # Excluindo outliers
-td.srag_mod = td.srag_mod.loc[td.srag_mod['idade'] < 118]
-print(f"Descrição do campo idade: {td.srag_mod['idade'].describe()}")
+td.srag_mod_outliers = td.srag_mod.loc[td.srag_mod['idade'] < 118]
+# print(f"Descrição do campo idade: {td.srag_mod_outliers['idade'].describe()}")
+
+# Gráfico  boxplot sem outliers
+# box = px.box(td.srag_mod_outliers, y='idade')
+# box.show()
+
+# Gráfico boxplot com outliers
+box = px.box(td.srag_mod, x='sexo', y='idade')
+box.show()
