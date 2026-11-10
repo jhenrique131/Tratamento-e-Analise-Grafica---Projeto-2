@@ -12,7 +12,7 @@ import plotly.express as px
 # print(f"Descrição do campo idade: {td.srag_mod['idade'].describe()}")
 
 # Registros que mais se repetem no campo idade - Moda
-print(f"Moda do campo idade: {td.srag_mod['idade'].mode()}")
+# print(f"Moda do campo idade: {td.srag_mod['idade'].mode()}")
 
 # Localizando idade == 1 e atribuindo zero ano a coluna idade
 td.srag_mod.loc[td.srag_mod['idade'] == 1, 'idade'] = 0
@@ -20,4 +20,12 @@ td.srag_mod.loc[td.srag_mod['idade'] == 1, 'idade'] = 0
 # Localizando idade == 2 e atribuindo zero ano a coluna idade
 td.srag_mod.loc[td.srag_mod['idade'] == 2, 'idade'] = 0
 
+# print(f"Descrição do campo idade: {td.srag_mod['idade'].describe()}")
+
+# Gráfico  boxplot
+# box = px.box(td.srag_mod, y='idade')
+# box.show()
+
+# Excluindo outliers
+td.srag_mod = td.srag_mod.loc[td.srag_mod['idade'] < 118]
 print(f"Descrição do campo idade: {td.srag_mod['idade'].describe()}")
